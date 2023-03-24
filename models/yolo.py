@@ -317,7 +317,7 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
         if m in {
                 Conv, GhostConv, Bottleneck, GhostBottleneck, SPP, SPPF, DWConv, MixConv2d, Focus, CrossConv,
                 BottleneckCSP, C3, C3TR, C3SPP, C3Ghost, nn.ConvTranspose2d, DWConvTranspose2d, C3x,
-                SE, CoordAtt, SOCA}:
+                SE, CoordAtt, SOCA, NAMAttention}:
             c1, c2 = ch[f], args[0]
             if c2 != no:  # if not output
                 c2 = make_divisible(c2 * gw, 8)
@@ -335,6 +335,12 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
             if c2 != no:
                 c2 = make_divisible(c2 * gw, 8)
             args = [c1, *args[1:]]
+        elif m is NAMAttention:
+            c1, c2 = ch[f], args[0]
+            if c2 != no:
+                c2 = make_divisible(c2 * gw, 8)
+            args = [c1, *args[1:]]
+
         # TODO: channel, gw, gd
         elif m in {Detect, Segment}:
             args.append([ch[x] for x in f])
