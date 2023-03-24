@@ -873,12 +873,13 @@ class Classify(nn.Module):
 class SE(nn.Module):
     def __init__(self, c1, c2, ratio=16):
         super(SE, self).__init__()
-        #c*1*1
+        # c*1*1
         self.avgpool = nn.AdaptiveAvgPool2d(1)
         self.l1 = nn.Linear(c1, c1 // ratio, bias=False)
         self.relu = nn.ReLU(inplace=True)
         self.l2 = nn.Linear(c1 // ratio, c1, bias=False)
         self.sig = nn.Sigmoid()
+
     def forward(self, x):
         b, c, _, _ = x.size()
         y = self.avgpool(x).view(b, c)
@@ -889,19 +890,25 @@ class SE(nn.Module):
         y = y.view(b, c, 1, 1)
         return x * y.expand_as(x)
 
+
 # CA
 class h_sigmoid(nn.Module):
     def __init__(self, inplace=True):
         super(h_sigmoid, self).__init__()
         self.relu = nn.ReLU6(inplace=inplace)
+
     def forward(self, x):
         return self.relu(x + 3) / 6
+
+
 class h_swish(nn.Module):
     def __init__(self, inplace=True):
         super(h_swish, self).__init__()
         self.sigmoid = h_sigmoid(inplace=inplace)
+
     def forward(self, x):
         return x * self.sigmoid(x)
+
 
 class CoordAtt(nn.Module):
     def __init__(self, inp, oup, reduction=32):
@@ -914,16 +921,17 @@ class CoordAtt(nn.Module):
         self.act = h_swish()
         self.conv_h = nn.Conv2d(mip, oup, kernel_size=1, stride=1, padding=0)
         self.conv_w = nn.Conv2d(mip, oup, kernel_size=1, stride=1, padding=0)
+
     def forward(self, x):
         identity = x
         n, c, h, w = x.size()
-        #c*1*W
+        # c*1*W
         x_h = self.pool_h(x)
-        #c*H*1
-        #C*1*h
+        # c*H*1
+        # C*1*h
         x_w = self.pool_w(x).permute(0, 1, 3, 2)
         y = torch.cat([x_h, x_w], dim=2)
-        #C*1*(h+w)
+        # C*1*(h+w)
         y = self.conv1(y)
         y = self.bn1(y)
         y = self.act(y)
