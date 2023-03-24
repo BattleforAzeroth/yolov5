@@ -1042,7 +1042,7 @@ class Sqrtm(Function):
         grad_input = der_NSiter.div(normA.view(batchSize, 1, 1).expand_as(x))
         grad_aux = der_NSiter.mul(x).sum(dim=1).sum(dim=1)
         for i in range(batchSize):
-            grad_input[i, :, :] += (der_postComAux[i] \
+            grad_input[i, :, :] += (der_postComAux[i]
                                     - grad_aux[i] / (normA[i] * normA[i])) \
                                    * torch.ones(dim, device=x.device).diag()
         return grad_input, None
