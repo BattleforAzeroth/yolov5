@@ -1,0 +1,13 @@
+train: /kaggle/input/thesis-15/train/images
+val: /kaggle/input/thesis-15/valid/images
+test: /kaggle/input/thesis-15/test/images
+
+nc: 19
+names: ['aluminum - Non_biodegradable-Recyclable', 'cardboard -Non_Biodegradable-Recyclable', 'egg shell - Biodegradable', 'facemask - Non_Biodegradable', 'food wrapper - Non_Biodegradable', 'fruit peels - Biodegradable', 'glass bottle - Non_Biodegradable', 'left-over food - Biodegradable', 'paper - Biodegradable-Recyclable', 'pet bottle - Non_Biodegradable-Recyclable', 'plastic bag - Non_Biodegradable', 'plastic bottle - Non_Biodegradable', 'plastic container - Non_Biodegradable', 'plastic sachet - Non_Biodegradable', 'plastic straw - Non_Biodegradable', 'styrofoam containers - Non_Biodegradable', 'treeleaves - Biodegradable', 'uht carton -Non_Biodegradable-Recyclable', 'vegetable peels -Biodegradable']
+
+roboflow:
+  workspace: grpglmthesis
+  project: thesis-unztx
+  version: 15
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/grpglmthesis/thesis-unztx/dataset/15
