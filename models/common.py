@@ -1512,7 +1512,7 @@ from torchvision import models
 class efficientnet_b01(nn.Module):
     def __init__(self, ignore) -> None:
         super().__init__()
-        model = models.efficientnet_b0()
+        model = models.efficientnet_b0(pretrained=True)
         modules = list(model.children())
         modules = modules[0][:4]
         self.model = nn.Sequential(*modules)
@@ -1524,7 +1524,7 @@ class efficientnet_b01(nn.Module):
 class efficientnet_b02(nn.Module):
     def __init__(self, ignore) -> None:
         super().__init__()
-        model = models.efficientnet_b0()
+        model = models.efficientnet_b0(pretrained=True)
         modules = list(model.children())
         modules = modules[0][4:6]
         self.model = nn.Sequential(*modules)
@@ -1536,7 +1536,7 @@ class efficientnet_b02(nn.Module):
 class efficientnet_b03(nn.Module):
     def __init__(self, ignore) -> None:
         super().__init__()
-        model = models.efficientnet_b0()
+        model = models.efficientnet_b0(pretrained=True)
         modules = list(model.children())
         modules = modules[0][6:]
         self.model = nn.Sequential(*modules)
