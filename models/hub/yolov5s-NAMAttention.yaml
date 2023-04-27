@@ -48,5 +48,5 @@ head:
    [-1, 3, C3, [1024, False]], # 26 (P5/32-large)
    [-1, 1, NAMAttention, [1024]],  # 27 替换为CBAM/ECA/CA/SE等均可
 
-   [[19, 23, 27], 1, Segment, [nc, anchors, 32, 256]],  # Detect(P3, P4, P5)
+   [[19, 23, 27], 1, Detect, [nc, anchors]],  # Detect(P3, P4, P5)
   ]
