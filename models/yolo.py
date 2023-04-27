@@ -371,6 +371,8 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
                 args[1] = [list(range(args[1] * 2))] * len(f)
         elif m is Expand:
             c2 = ch[f] // args[0] ** 2
+        elif m is efficientnet_b01 or m is efficientnet_b02 or m is efficientnet_b03:
+            c2 = args[0]
         else:
             c2 = ch[f]
 

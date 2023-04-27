@@ -1502,3 +1502,44 @@ class ASFF_Detect(nn.Module):  # add ASFFV5 layer and Rfb
         anchor_grid = (self.anchors[i] * self.stride[i]).view((1, self.na, 1, 1, 2)).expand(shape)
         # print(anchor_grid)
         return grid, anchor_grid
+
+
+'''
+模型：efficientnet_b0
+'''
+
+from torchvision import models
+class efficientnet_b01(nn.Module):
+    def __init__(self, ignore) -> None:
+        super().__init__()
+        model = models.efficientnet_b0()
+        modules = list(model.children())
+        modules = modules[0][:4]
+        self.model = nn.Sequential(*modules)
+
+    def forward(self, x):
+        return self.model(x)
+
+
+class efficientnet_b02(nn.Module):
+    def __init__(self, ignore) -> None:
+        super().__init__()
+        model = models.efficientnet_b0()
+        modules = list(model.children())
+        modules = modules[0][4:6]
+        self.model = nn.Sequential(*modules)
+
+    def forward(self, x):
+        return self.model(x)
+
+
+class efficientnet_b03(nn.Module):
+    def __init__(self, ignore) -> None:
+        super().__init__()
+        model = models.efficientnet_b0()
+        modules = list(model.children())
+        modules = modules[0][6:]
+        self.model = nn.Sequential(*modules)
+
+    def forward(self, x):
+        return self.model(x)
