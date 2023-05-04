@@ -140,7 +140,7 @@ class ComputeLoss:
                 pbox = torch.cat((pxy, pwh), 1)  # predicted box
 
                 # choose IoU
-                iou = bbox_iou(pbox, tbox[i], CIoU=True)
+                iou = bbox_iou(pbox, tbox[i], SIoU=True, Focal=True)
                 if type(iou) is tuple:
                     if len(iou) == 2:
                         lbox += (iou[1].detach().squeeze() * (1 - iou[0].squeeze())).mean()
