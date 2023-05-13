@@ -15,6 +15,7 @@ backbone:
   [[-1, 1, efficientnet_b01, [40]],  # 0
    [-1, 1, efficientnet_b02, [112]],  # 1
    [-1, 1, efficientnet_b03, [1280]],  # 2
+   [-1, 3, C3, [1024]],       # new test!
    [-1, 1, SPPF, [1024, 5]],  # 3
   ]
 
