@@ -1545,6 +1545,47 @@ class efficientnet_b03(nn.Module):
         return self.model(x)
 
 
+'''
+模型：efficientnet_b1
+'''
+
+
+class efficientnet_b11(nn.Module):
+    def __init__(self, ignore) -> None:
+        super().__init__()
+        model = models.efficientnet_b1()
+        modules = list(model.children())
+        modules = modules[0][:4]
+        self.model = nn.Sequential(*modules)
+
+    def forward(self, x):
+        return self.model(x)
+
+
+class efficientnet_b12(nn.Module):
+    def __init__(self, ignore) -> None:
+        super().__init__()
+        model = models.efficientnet_b1()
+        modules = list(model.children())
+        modules = modules[0][4:6]
+        self.model = nn.Sequential(*modules)
+
+    def forward(self, x):
+        return self.model(x)
+
+
+class efficientnet_b13(nn.Module):
+    def __init__(self, ignore) -> None:
+        super().__init__()
+        model = models.efficientnet_b0()
+        modules = list(model.children())
+        modules = modules[0][6:]
+        self.model = nn.Sequential(*modules)
+
+    def forward(self, x):
+        return self.model(x)
+
+
 class SimAM(torch.nn.Module):
     def __init__(self, channels=None, out_channels=None, e_lambda=1e-4):
         super(SimAM, self).__init__()
