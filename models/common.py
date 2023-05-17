@@ -1553,7 +1553,7 @@ class efficientnet_b03(nn.Module):
 class efficientnet_b11(nn.Module):
     def __init__(self, ignore) -> None:
         super().__init__()
-        model = models.efficientnet_b1()
+        model = models.efficientnet_b1(pretrained=True)
         modules = list(model.children())
         modules = modules[0][:4]
         self.model = nn.Sequential(*modules)
@@ -1565,7 +1565,7 @@ class efficientnet_b11(nn.Module):
 class efficientnet_b12(nn.Module):
     def __init__(self, ignore) -> None:
         super().__init__()
-        model = models.efficientnet_b1()
+        model = models.efficientnet_b1(pretrained=True)
         modules = list(model.children())
         modules = modules[0][4:6]
         self.model = nn.Sequential(*modules)
@@ -1577,7 +1577,7 @@ class efficientnet_b12(nn.Module):
 class efficientnet_b13(nn.Module):
     def __init__(self, ignore) -> None:
         super().__init__()
-        model = models.efficientnet_b0()
+        model = models.efficientnet_b0(pretrained=True)
         modules = list(model.children())
         modules = modules[0][6:]
         self.model = nn.Sequential(*modules)
